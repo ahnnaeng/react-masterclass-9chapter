@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Wapper = styled.div`
   background: black;
+  padding-bottom: 200px;
 `;
 
 const Loader = styled.div`
@@ -56,13 +57,28 @@ const Box = styled(motion.div)<{ bgPhoto: string }>`
   background-position: center center;
   background-size: cover;
   height: 200px;
-  color: red;
-  font-size: 68px;
+  font-size: 66px;
   &:first-child {
     transform-origin: center left;
   }
   &:last-child {
     transform-origin: center right;
+  }
+`;
+
+const Info = styled(motion.div)`
+  background-color: ${(props) => props.theme.black.lighter};
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h4 {
+    text-align: center;
+    font-size: 18px;
   }
 `;
 
@@ -85,7 +101,22 @@ const boxVariants = {
   hover: {
     scale: 1.3,
     y: -50,
-    transition: { delay: 0.5, duration: 0.3, type: "tween" },
+    transition: {
+      delay: 0.5,
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+};
+
+const infoVariants = {
+  hover: {
+    opacity: 1,
+    transition: {
+      delay: 0.5,
+      duration: 0.3,
+      type: "tween",
+    },
   },
 };
 
@@ -146,7 +177,11 @@ function Home() {
                       whileHover="hover"
                       transition={{ type: "tween" }}
                       bgPhoto={makeImagePath(movie.backdrop_path, "w500")}
-                    />
+                    >
+                      <Info variants={infoVariants}>
+                        <h4>{movie.title}</h4>
+                      </Info>
+                    </Box>
                   ))}
               </Row>
             </AnimatePresence>
