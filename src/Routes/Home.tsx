@@ -5,7 +5,6 @@ import { makeImagePath } from "../utils";
 import { motion, AnimatePresence, useViewportScroll } from "framer-motion";
 import { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { url } from "inspector";
 
 const Wapper = styled.div`
   background: black;
@@ -199,8 +198,6 @@ function Home() {
   const clickedMovie =
     bigMovieMatch?.params.movieId &&
     data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);
-  console.log("bigMovieMatch = ", bigMovieMatch);
-  console.log("clickedMovie = ", clickedMovie);
 
   return (
     <Wapper>
